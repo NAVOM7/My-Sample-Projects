@@ -11,6 +11,14 @@
     <div ng-controller="myController">
 
         Rows to Display: <input type="number" step="1" ng-model="rowCount" min="0" max="5" />
+                         <br />
+        Sort By: <select ng-model="sortColumn">
+            <option value="name">Name ASC</option>
+            <option value="dateOfBirth">DOB ASC</option>
+            <option value="-salary">Salary DESC</option>
+            <option value="gender">Gender ASC</option>
+        </select>
+
 
         <table>
             <thead>
@@ -24,7 +32,7 @@
             </thead>
 
             <tbody>
-                <tr ng-repeat="employee in employees | limitTo: rowCount | orderBy: 'salary':false" >
+                <tr ng-repeat="employee in employees | limitTo: rowCount | orderBy: sortColumn">
                     <td>{{ employee.name | uppercase}}</td>
                     <td>{{ employee.dateOfBirth | date: "dd/MM/yyyy" }}</td>
                     <td>{{ employee.gender | lowercase }}</td>
@@ -32,7 +40,7 @@
                     <td>{{ employee.salary | currency: "₹":1}}</td>
                 </tr>
             </tbody>
-            
+
         </table>
     </div>
 </body>
