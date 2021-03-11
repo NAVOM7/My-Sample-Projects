@@ -28,6 +28,19 @@ var myApp = angular
 
         $scope.employees = employees;
         $scope.sortColumn = 'name';
-        $scope.rowCount = 5;
+        $scope.reverseSort = false;
+
+        $scope.sortData = function (column) {
+            $scope.reverseSort = ($scope.sortColumn == column) ? !$scope.reverseSort : false;
+            $scope.sortColumn = column;
+        }
+
+        $scope.getSortClass = function (column) {
+            if ($scope.sortColumn == column) {
+                return $scope.reverseSort ? 'arrow-down' : 'arrow-up';
+            }
+            return '';
+        }
+
         
     });
