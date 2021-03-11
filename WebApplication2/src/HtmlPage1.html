@@ -9,26 +9,30 @@
 </head>
 <body ng-app="myModule" style="font-family:Arial">
     <div ng-controller="myController">
+
+        Rows to Display: <input type="number" step="1" ng-model="rowCount" min="0" max="5" />
+
         <table>
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Likes</th>
-                    <th>Dislikes</th>
-                    <th>Like/Dislike</th>
+                    <th>DOB</th>
+                    <th>Gender</th>
+                    <th>Salary</th>
+                    <th>Salary</th>
                 </tr>
             </thead>
+
             <tbody>
-                <tr ng-repeat="technology in technologies">
-                    <td> {{ technology.name }} </td>
-                    <td style="text-align:center"> {{ technology.likes }} </td>
-                    <td style="text-align:center"> {{ technology.dislikes }} </td>
-                    <td>
-                        <input type="button" ng-click="incrementLikes(technology)" value="Like" />
-                        <input type="button" ng-click="incrementDislikes(technology)" value="Dislike" />
-                    </td>
+                <tr ng-repeat="employee in employees | limitTo: rowCount">
+                    <td>{{ employee.name | uppercase}}</td>
+                    <td>{{ employee.dateOfBirth | date: "dd/MM/yyyy" }}</td>
+                    <td>{{ employee.gender | lowercase }}</td>
+                    <td>{{ employee.salary |  number:2 }}</td>
+                    <td>{{ employee.salary | currency: "₹":1}}</td>
                 </tr>
             </tbody>
+            
         </table>
     </div>
 </body>
